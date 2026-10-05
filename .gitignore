@@ -1,0 +1,72 @@
+# ============ 绝对不能提交的东西 ============
+# SSH 私钥 —— 一旦上传就等于把账号钥匙公开了
+id_ed25519
+id_rsa
+*.pem
+*.key
+*.ppk
+.ssh/
+
+# ============ 凭据与配置 ============
+.env
+.env.*
+*.token
+*credential*
+secrets.json
+config.local.*
+
+# ============ 脑机接口数据（体积大、含被试隐私，绝不进公开仓库） ============
+*.edf
+*.bdf
+*.gdf
+*.cnt
+*.set
+*.fdt
+*.vhdr
+*.vmrk
+*.eeg
+*.mat
+*.npy
+*.npz
+*.h5
+*.hdf5
+*.pkl
+data/
+datasets/
+raw_data/
+subject_*/
+
+# ============ Python ============
+__pycache__/
+*.py[cod]
+*.egg-info/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.pytest_cache/
+.mypy_cache/
+*.log
+
+# ============ 编辑器 / 系统 ============
+.vscode/
+.idea/
+*.swp
+Thumbs.db
+desktop.ini
+~$*
+
+# ============ 模型权重（大文件） ============
+*.pt
+*.pth
+*.ckpt
+*.onnx
+checkpoints/
+runs/
+
+# ============ 临时文件 ============
+test_write_probe.txt
+
+# ============ 注意 ============
+# 数据不进仓库，但要在 README 里写清楚从哪下载、怎么复现。
+# 可复现性靠"说明 + 脚本"，不靠"把数据塞进仓库"。
