@@ -88,9 +88,16 @@ if (-not (Test-Path $SshDir)) { New-Item -ItemType Directory -Force -Path $SshDi
 if (Test-Path $KeyPath) {
     Warn "密钥已存在，跳过生成：$KeyPath"
 } else {
-    # 注意：空密码要传真空参数，写成 '""' 会变成两个引号字符
-    & ssh-keygen -t ed25519 -C $GitHubUser -f $KeyPath -N "" | Out-Null
-    if (-not (Test-Path "$KeyPath.pub")) { throw "密钥生成失败" }
+    # 重要：PowerShell 5.1 会把传给原生程序的空字符串参数吞掉，
+    #       写成 -N "" 会报 "option requires an argument -- N"。
+    #       必须用 .NET 进程 API 自己控制引号。
+    $psi = New-Object System.Diagnostics.ProcessStartInfo
+    $psi.FileName  = 'ssh-keygen.exe'
+    $psi.Arguments = ('-t ed25519 -C "{0}" -f "{1}" -N ""' -f $GitHubUser, $KeyPath)
+    $psi.UseShellExecute = $false
+    $proc = [System.Diagnostics.Process]::Start($psi)
+    $proc.WaitForExit()
+    if (-not (Test-Path "$KeyPath.pub")) { throw "密钥生成失败（退出码 $($proc.ExitCode)）" }
     Ok "已生成 $KeyPath"
 }
 
@@ -121,6 +128,16 @@ if (-not [string]::IsNullOrWhiteSpace($GitHubMail)) {
 & $GitExe config --global core.quotepath false       # 中文文件名不乱码
 & $GitExe config --global core.autocrlf false
 & $GitExe config --global pull.rebase false
+
+# 关键：Git 自带的 MSYS2 版 ssh 处理不了中文用户名路径（C:\Users\葛），
+#      必须改用系统自带的 OpenSSH。注意路径要用正斜杠，否则反斜杠会被吃掉。
+$winSsh = "$env:SystemRoot\System32\OpenSSH\ssh.exe"
+if (Test-Path $winSsh) {
+    & $GitExe config --global core.sshCommand ("{0}" -f ($winSsh -replace '\\', '/'))
+    Ok "已让 Git 使用系统 OpenSSH（规避中文路径问题）"
+} else {
+    Warn "未找到系统 OpenSSH，中文用户名下 git push 可能失败"
+}
 Ok "已写入全局配置"
 
 # ---------- 4. 初始化本地仓库 ----------
