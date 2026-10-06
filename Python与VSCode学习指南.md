@@ -80,7 +80,7 @@ sys.stdout = io.TextIOWrapper(sys.stdout.buffer, encoding='utf-8')
 | # | 内容 | 例子 |
 |---|---|---|
 | 1 | `print()` 打印 | `print("你好")` |
-| 2 | 变量 | `f = 10`、`name = "格涵睿"` |
+| 2 | 变量 | `f = 10`、`name = "葛含瑞"` |
 | 3 | `input()` 从键盘读入 | `age = input("你几岁：")` |
 | 4 | `if / else` 判断 | `if age > 18: ... else: ...` |
 | 5 | `for` 循环 | `for i in range(5): print(i)` |
