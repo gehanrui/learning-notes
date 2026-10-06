@@ -70,3 +70,10 @@ test_write_probe.txt
 # ============ 注意 ============
 # 数据不进仓库，但要在 README 里写清楚从哪下载、怎么复现。
 # 可复现性靠"说明 + 脚本"，不靠"把数据塞进仓库"。
+
+# ============ savefig 实验的中间产物（保留示例图，去掉调试对比图） ============
+savefig_dpi100.png
+savefig_dpi300.png
+savefig_有白边.png
+savefig_紧边距.png
+savefig_透明.png

@@ -105,11 +105,6 @@ import matplotlib.pyplot as plt
 plt.rcParams["font.sans-serif"] = ["Microsoft YaHei", "SimHei", "DejaVu Sans"]
 plt.rcParams["axes.unicode_minus"] = False
 
-# 固定 PNG 里的元数据，让每次生成的图片字节一致
-# （否则会因为写入时间戳而在 git 里产生无意义的差异）
-from matplotlib import rcParams as _rc
-_rc["savefig.metadata"] = {"Software": None, "Creation Time": None}
-
 fig, ax = plt.subplots(figsize=(9, 3))
 ax.plot(t[:100], signal[:100])              # 只画前 100 个点（放大看更清楚）
 ax.set_xlabel("时间 (秒)")
