@@ -117,7 +117,20 @@ peak = freqs[np.argmax(spectrum)]
 
 ---
 
-## 五、资源怎么用（黑马程序员那门课）
+## 五、资源怎么用
+
+> **更正（2026-10-07）**：原推荐《黑马程序员》课程，经实际查看**该课程没有 numpy 部分**
+> （我依据课程简介判断，判断错误）。
+>
+> **改用**：
+> - **莫烦Python Numpy 教程**（中文、专门讲 numpy）：
+>   https://mofanpy.com/tutorials/data-manipulation/np-pd/
+> - **numpy 官方中文文档**：https://numpy.org/zh-hans/
+>
+> **具体该练什么，见 `numpy四周练习清单.md`。**
+
+### 以下是原内容（保留供参考，其中课程名已过时）
+
 
 课程：**《黑马程序员Python+AI零基础入门到大神全套视频课程》**（B站，185 集）
 
