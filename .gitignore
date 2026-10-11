@@ -86,8 +86,4 @@ _VK1_old_1010_2240/
 VK-1/
 
 # ============ 敏感文件：绝不能提交 ============
-apikey.txt
-*apikey*
-*api_key*
 *.secret
-secrets/
