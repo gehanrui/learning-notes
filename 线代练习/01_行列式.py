@@ -61,3 +61,9 @@ print("""
   2. 把 B 的第 3 行改成 [7, 8, 9]，det 变了吗？（提示：想想为什么）
   3. 单位矩阵 np.eye(3) 的 det 是多少？
 """)
+S = np.array([[1, 2],
+              [2, 5]])
+print("det=",np.linalg.det(S))
+B[2,2]=9
+print("det=",np.linalg.det(B))
+print("det=",np.linalg.det(np.eye(3)))
