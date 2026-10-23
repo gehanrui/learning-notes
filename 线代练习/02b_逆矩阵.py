@@ -59,3 +59,6 @@ print("""
   2. 求 [[2, 0], [0, 4]] 的逆（提示：对角线取倒数，试试看）
   3. 手算验证：A @ A⁻¹ 是不是真的等于 I
 """)
+print("np.linalg.inv(np.eye(3))=",np.linalg.inv(np.eye(3)))
+B= np.array([[2, 0], [0, 4]])
+print("np.linalg.inv(B)=",np.linalg.inv(B))
